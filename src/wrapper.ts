@@ -1,5 +1,3 @@
-'use client';
-
 import {
     type AnyAnalytics,
     type ConsentModel,
