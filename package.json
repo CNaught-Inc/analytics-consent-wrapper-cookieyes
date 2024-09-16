@@ -1,6 +1,6 @@
 {
-  "name": "analytics-consent-wrapper-cookieyes",
-  "version": "0.1.0",
+  "name": "@cnaught/analytics-consent-wrapper-cookieyes",
+  "version": "0.1.3",
   "keywords": [
     "segment",
     "analytics",
