@@ -16,4 +16,5 @@ jobs:
       - run: npm run build --if-present
       - run: npm publish
         env:
+          NODE_ENV: production
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
