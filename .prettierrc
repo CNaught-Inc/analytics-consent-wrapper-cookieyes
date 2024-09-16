@@ -1,0 +1,24 @@
+{
+    "singleQuote": true,
+    "tabWidth": 4,
+    "importOrder": ["^@(.*)$", "<THIRD_PARTY_MODULES>", "^[./]"],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "importOrderCaseInsensitive": true,
+    "trailingComma": "none",
+    "overrides": [
+        {
+            "files": "*.mjs",
+            "options": {
+                "importOrderParserPlugins": ["importAssertions"]
+            }
+        },
+        {
+            "files": ["*.yml", "*.json"],
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ],
+    "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}
