@@ -1,6 +1,9 @@
-import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import nodeResolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
+
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 const env = process.env.NODE_ENV || 'local';
 const shouldMin = env === 'production' || env === 'stage';
@@ -18,7 +21,18 @@ export default [
             {
                 file: `dist/global/${indexFileName}`,
                 format: 'iife'
-            },
+            }
+        ],
+        plugins: [
+            nodeResolve({ browser: true }),
+            typescript({ tsconfig: './tsconfig.json' }),
+            commonjs(),
+            shouldMin && terser()
+        ]
+    },
+    {
+        input: 'src/index.ts',
+        output: [
             {
                 file: `dist/cjs/${indexFileName}`,
                 format: 'cjs'
@@ -29,10 +43,9 @@ export default [
             }
         ],
         plugins: [
-            resolve({ browser: true }),
+            nodeResolve(),
             typescript({ tsconfig: './tsconfig.json' }),
-            // commonjs(),
-            shouldMin && terser()
+            peerDepsExternal()
         ]
     }
 ];
