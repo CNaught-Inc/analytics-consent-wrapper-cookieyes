@@ -27,7 +27,7 @@ export default [
             nodeResolve({ browser: true }),
             typescript({ tsconfig: './tsconfig.json' }),
             commonjs(),
-            shouldMin && terser()
+            shouldMin && terser({ compress: { drop_console: false } })
         ]
     },
     {
