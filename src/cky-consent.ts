@@ -16,7 +16,7 @@ export interface CkyConsent {
     languageCode: string;
 }
 
-export function getCkyConsent() {
+export function getCkyConsent(): CkyConsent {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
     return window.getCkyConsent?.()!;
 }

@@ -8,7 +8,6 @@ import {
 
 import {
     activeLawToConsentModel,
-    type CkyConsent,
     getCkyConsent,
     onCkyConsentUpdate
 } from './cky-consent';
@@ -43,6 +42,7 @@ export const withCookieYes = <TAnalytics extends AnyAnalytics>(
     createWrapper<TAnalytics>({
         shouldLoadWrapper: async () => {
             await resolveWhen(() => !!window.getCkyConsent, 500);
+            settings.enableDebugLogging && console.log('Will load wrapper');
         },
         shouldLoadSegment: async (ctx) => {
             const { activeLaw, isUserActionCompleted, categories } =
@@ -57,6 +57,7 @@ export const withCookieYes = <TAnalytics extends AnyAnalytics>(
                         Object.values(categories).some((v) => v),
                     500
                 );
+                settings.enableDebugLogging && console.log('Will load segment');
             }
             return ctx.load({ consentModel });
         },
