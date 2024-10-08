@@ -3,6 +3,7 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 
+import dtsPlugin from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 const env = process.env.NODE_ENV || 'local';
@@ -36,15 +37,26 @@ export default [
             {
                 file: `dist/cjs/${indexFileName}`,
                 format: 'cjs'
-            },
-            {
-                file: `dist/es/${indexFileName}`,
-                format: 'es'
             }
         ],
         plugins: [
             nodeResolve(),
             typescript({ tsconfig: './tsconfig.json' }),
+            peerDepsExternal()
+        ]
+    },
+    {
+        input: 'src/index.ts',
+        output: [
+            {
+                file: `dist/esm/${indexFileName}`,
+                format: 'esm'
+            }
+        ],
+        plugins: [
+            nodeResolve(),
+            typescript({ tsconfig: './tsconfig.json' }),
+            dtsPlugin(),
             peerDepsExternal()
         ]
     }
