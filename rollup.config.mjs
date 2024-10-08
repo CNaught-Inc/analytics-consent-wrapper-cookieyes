@@ -56,6 +56,20 @@ export default [
         plugins: [
             nodeResolve(),
             typescript({ tsconfig: './tsconfig.json' }),
+            peerDepsExternal()
+        ]
+    },
+    {
+        input: 'src/index.ts',
+        output: [
+            {
+                file: 'dist/esm/types/index.d.ts',
+                format: 'esm'
+            }
+        ],
+        plugins: [
+            nodeResolve(),
+            typescript({ tsconfig: './tsconfig.json' }),
             dtsPlugin(),
             peerDepsExternal()
         ]
